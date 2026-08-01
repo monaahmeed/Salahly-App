@@ -47,6 +47,7 @@
   "air_conditioning": "تكييف وتبريد",
   "carpentry": "نجارة",
   "painting": "نقاشة ودهانات",
+  "cleaning":"التنظيف",
   "file_size":"حجم الملف كبير جداً، الحد الأقصى 5 ميجابايت",
   "file_error":"حدث خطأ أثناء اختيار الملف",
   "forgot_password_title": "نسيت كلمة المرور؟",
@@ -54,6 +55,10 @@
   "send_reset_link_btn": "إرسال رابط إعادة التعيين",
   "reset_email_sent_success": "تم إرسال رابط إعادة التعيين إلى بريدك الإلكتروني بنجاح",
   "reset_email_error": "حدث خطأ أثناء إرسال الرابط، يرجى التثبت من الإيميل والمحاولة لاحقاً",
-  "val_invalid_email": "يرجى إدخال بريد إلكتروني صحيح"
-
+  "val_invalid_email": "يرجى إدخال بريد إلكتروني صحيح",
+  "location_label": "الموقع",
+  "categories":"الفئات",
+  "top_technicians": "أبرز الفنيين",
+"see_all": "عرض الكل",
+"book_btn": "حجز"
 }

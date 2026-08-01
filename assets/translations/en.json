@@ -47,6 +47,7 @@
   "air_conditioning": "Cooling / AC",
   "carpentry": "Carpentry",
   "painting": "Painting",
+  "cleaning":"Cleaning",
   "file_size":"The file size is too large, the maximum limit is 5 MB.",
   "file_error":"An error occurred while selecting the file.",
   "forgot_password_title": "Forgot Password?",
@@ -54,5 +55,10 @@
   "send_reset_link_btn": "Send Reset Link",
   "reset_email_sent_success": "Reset link sent successfully to your email",
   "reset_email_error": "An error occurred while sending the link, please check your email and try again",
-  "val_invalid_email": "Please enter a valid email address"
+  "val_invalid_email": "Please enter a valid email address",
+  "location_label": "Location",
+  "categories":"Categories",
+  "top_technicians": "Top technicians",
+"see_all": "See all",
+"book_btn": "Book"
 }
