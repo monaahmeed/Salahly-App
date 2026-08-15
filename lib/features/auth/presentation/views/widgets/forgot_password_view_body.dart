@@ -26,10 +26,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
       setState(() => _isLoading = true);
 
       try {
-        // 🛠️ هنا في المستقبل بنستدعي الـ Cubit / FirebaseAuth logic
-        // await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text.trim());
-
-        // محاكاة انتظر العملية (سانيتين)
+        
         await Future.delayed(const Duration(seconds: 2));
 
         if (mounted) {

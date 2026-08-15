@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salahly/features/client/home/presentation/views/widgets/costum_home_app_bar.dart';
-import 'package:salahly/features/client/home/presentation/views/widgets/custom_name.dart';
+import 'package:salahly/features/client/home/presentation/views/widgets/custom_client_name.dart';
 import 'package:salahly/features/client/home/presentation/views/widgets/technician_categores.dart';
 import 'package:salahly/features/client/home/presentation/views/widgets/top_technicians_section.dart';
 
@@ -30,7 +30,7 @@ class HomeViewBody extends StatelessWidget {
             const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: CustomName(),
+              child: CustomClientName(),
             ),
             const SizedBox(height: 20),
             Padding(

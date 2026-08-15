@@ -1,17 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:salahly/core/theme/app_theme.dart';
 
-class CustomName extends StatelessWidget {
-  const CustomName({super.key});
+class CustomClientName extends StatelessWidget {
+  const CustomClientName({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Hello, Mona',
-          style: TextStyle(
+         Text(
+          'mona'.tr(),
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: AppTheme.primaryNavy,
@@ -19,7 +20,7 @@ class CustomName extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'What needs fixing in your home today?',
+          'fixing'.tr(),
           style: TextStyle(fontSize: 14, color: AppTheme.slate600),
         ),
       ],

@@ -16,25 +16,25 @@ class TopTechniciansSection extends StatelessWidget {
         name: 'Omar Haddad',
         specialty: 'Master Plumber',
         rating: 4.9,
-        imageUrl: '',
+        imageUrl: '', id: '',
       ),
       TechnicianModel(
         name: 'Layla Karim',
         specialty: 'Electrician',
         rating: 4.9,
-        imageUrl: '',
+        imageUrl: '', id: '',
       ),
       TechnicianModel(
         name: 'Yusuf Ali',
         specialty: 'AC Specialist',
         rating: 4.8,
-        imageUrl: '',
+        imageUrl: '', id: '',
       ),
       TechnicianModel(
         name: 'Ahmed Hassan',
         specialty: 'Painter',
         rating: 4.7,
-        imageUrl: '',
+        imageUrl: '', id: '',
       ),
     ];
 

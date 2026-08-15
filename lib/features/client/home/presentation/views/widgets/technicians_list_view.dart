@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:salahly/features/client/booking/presentation/views/booking_view.dart';
 import 'package:salahly/features/client/home/data/models/technician_model.dart';
 import 'custom_technician_card.dart';
-
 
 class TechniciansListView extends StatelessWidget {
   final List<TechnicianModel> technicians;
@@ -19,10 +19,19 @@ class TechniciansListView extends StatelessWidget {
       itemCount: technicians.length,
       separatorBuilder: (context, index) => const SizedBox(height: 12),
       itemBuilder: (context, index) {
+        final currentTechnician = technicians[index];
+
         return CustomTechnicianCard(
-          technician: technicians[index],
+          technician: currentTechnician,
           onBookTap: () {
-            // Navigate to Book / Details view
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BookingView(
+                  technician: currentTechnician, 
+                ),
+              ),
+            );
           },
         );
       },
