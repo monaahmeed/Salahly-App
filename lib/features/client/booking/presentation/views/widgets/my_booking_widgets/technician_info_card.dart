@@ -14,6 +14,13 @@ class TechnicianInfoCard extends StatelessWidget {
     this.onCallTap,
   });
 
+  bool get _isValidImageUrl {
+    if (imageUrl == null) return false;
+    final trimmed = imageUrl!.trim();
+    return trimmed.isNotEmpty &&
+        (trimmed.startsWith('http://') || trimmed.startsWith('https://'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,9 +33,15 @@ class TechnicianInfoCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 20,
-            backgroundImage: imageUrl != null ? NetworkImage(imageUrl!) : null,
-            child: imageUrl == null
-                ? const Icon(Icons.person, color: Colors.grey)
+            backgroundColor: const Color(0xFFE2E8F0),
+            backgroundImage: _isValidImageUrl
+                ? NetworkImage(imageUrl!.trim())
+                : null,
+            onBackgroundImageError: _isValidImageUrl
+                ? (exception, stackTrace) {}
+                : null,
+            child: !_isValidImageUrl
+                ? const Icon(Icons.person, color: Color(0xFF64748B))
                 : null,
           ),
           const SizedBox(width: 12),
@@ -63,7 +76,11 @@ class TechnicianInfoCard extends StatelessWidget {
                 onTap: onCallTap,
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.chat_bubble_outline, size: 20, color: AppTheme.primaryNavy),
+                  child: Icon(
+                    Icons.chat_bubble_outline,
+                    size: 20,
+                    color: AppTheme.primaryNavy,
+                  ),
                 ),
               ),
             ),

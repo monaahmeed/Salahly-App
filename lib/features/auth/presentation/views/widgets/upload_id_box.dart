@@ -31,15 +31,15 @@ class _UploadIdBoxState extends State<UploadIdBox> {
             color: hasFile
                 ? Colors.green.shade50
                 : (_isHovered
-                    ? AppTheme.accentAmber.withOpacity(0.05)
-                    : Colors.amber.shade50.withOpacity(0.3)),
+                      ? AppTheme.accentAmber.withOpacity(0.05)
+                      : Colors.amber.shade50.withOpacity(0.3)),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: hasFile
                   ? Colors.green
                   : (_isHovered
-                      ? AppTheme.accentAmber
-                      : AppTheme.accentAmber.withOpacity(0.5)),
+                        ? AppTheme.accentAmber
+                        : AppTheme.accentAmber.withOpacity(0.5)),
               width: 1.5,
             ),
           ),
@@ -54,7 +54,9 @@ class _UploadIdBoxState extends State<UploadIdBox> {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  hasFile ? Icons.check_circle_outline_rounded : Icons.cloud_upload_outlined,
+                  hasFile
+                      ? Icons.check_circle_outline_rounded
+                      : Icons.cloud_upload_outlined,
                   color: hasFile ? Colors.green : AppTheme.accentAmber,
                   size: 28,
                 ),

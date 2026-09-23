@@ -5,11 +5,11 @@ import 'package:salahly/core/theme/app_theme.dart';
 class ProblemDescriptionInput extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
-
+  final String? Function(String?)? validator;
   const ProblemDescriptionInput({
     super.key,
     required this.controller,
-    this.onChanged,
+    this.onChanged, this.validator,
   });
 
   @override
@@ -28,8 +28,9 @@ class ProblemDescriptionInput extends StatelessWidget {
         ),
         const SizedBox(height: 8),
 
-        TextField(
+        TextFormField(
           controller: controller,
+          validator: validator,
           maxLines: 4,
           onChanged: onChanged,
           style: const TextStyle(fontSize: 14, color: AppTheme.primaryNavy),
@@ -50,6 +51,21 @@ class ProblemDescriptionInput extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               borderSide: const BorderSide(
                 color: AppTheme.primaryNavy,
+                width: 1.5,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(
+                color: Color(0xFFDC2626),
+                width: 1.2,
+              ),
+            ),
+
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(
+                color: Color(0xFFDC2626),
                 width: 1.5,
               ),
             ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/active_booking_card.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:salahly/features/client/booking/data/models/booking_model.dart';
+import 'package:salahly/features/client/booking/presentation/views/live_technician_tracking_view.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/active_bookings_tab_view.dart';
 import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/bookings_tab_bar.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/scheduled_booking_card.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/status_badge.dart';
-
+import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/history_bookings_tab_view.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/scheduled_bookings_tab_view.dart';
 
 class MyBookingsViewBody extends StatefulWidget {
   const MyBookingsViewBody({super.key});
@@ -15,6 +17,11 @@ class MyBookingsViewBody extends StatefulWidget {
 class _MyBookingsViewBodyState extends State<MyBookingsViewBody>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
+  
+  final List<BookingModel> _activeBookings = [];
+  final List<BookingModel> _scheduledBookings = [];
+  final List<BookingModel> _historyBookings = [];
 
   @override
   void initState() {
@@ -28,6 +35,22 @@ class _MyBookingsViewBodyState extends State<MyBookingsViewBody>
     super.dispose();
   }
 
+  void _navigateToTracking(BookingModel booking) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LiveTechnicianTrackingView(
+          jobId: booking.id,
+          technicianName: booking.technicianName ?? 'Specialist',
+          technicianPhone: booking.technicianPhone,
+          technicianImage: booking.technicianImage,
+          clientLocation: booking.clientLocation ?? const LatLng(30.0444, 31.2357),
+          initialTechnicianLocation: booking.technicianLocation ?? const LatLng(30.0380, 31.2280),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,68 +58,22 @@ class _MyBookingsViewBodyState extends State<MyBookingsViewBody>
       child: Column(
         children: [
           const SizedBox(height: 12),
-
-          
           BookingsTabBar(controller: _tabController),
           const SizedBox(height: 16),
-
-          
           Expanded(
             child: TabBarView(
               controller: _tabController,
               children: [
-                
-                ListView(
-                  physics: const BouncingScrollPhysics(),
-                  children: [
-                    ActiveBookingCard(
-                      categoryTitle: 'AC Maintenance',
-                      jobId: 'SL-8291',
-                      status: BookingStatus.inProgress,
-                      technicianName: 'Ahmed Hassan',
-                      price: 'AED 350.00',
-                      estCompletionTime: '14:30 PM',
-                      onTrackTap: () {},
-                      onCallTap: () {},
-                    ),
-                   ActiveBookingCard(
-                      categoryTitle: 'Emergency Plumbing',
-                      jobId: 'SL-8291',
-                      status: BookingStatus.completed,
-                      price: 'AED 350.00',
-                      estCompletionTime: '14:30 PM',
-                      onTrackTap: () {},
-                      onCallTap: () {},
-                   )
-                  ],
+                ActiveBookingsTabView(
+                  bookings: _activeBookings,
+                  onTrackTap: _navigateToTracking,
+                  onCallTap: (booking) {},
                 ),
-
-                
-                ListView(
-                  physics: const BouncingScrollPhysics(),
-                  children: const [
-                    ScheduledBookingCard(
-                      categoryTitle: 'Emergency Plumbing',
-                      jobId: 'SL-8104',
-                      status: BookingStatus.scheduled,
-                      dateText: 'Tomorrow, 09:00 AM',
-                      price: 'AED 150.00',
-                    ),
-                  ],
+                ScheduledBookingsTabView(
+                  bookings: _scheduledBookings,
                 ),
-
-                
-                ListView(
-                  physics: const BouncingScrollPhysics(),
-                  children: const [
-                    ScheduledBookingCard(
-                      categoryTitle: 'Electrical Repair',
-                      jobId: 'SL-7920',
-                      status: BookingStatus.completed,
-                      dateText: '02 Aug 2026, 04:00 PM',
-                      price: 'AED 200.00',
-                    ),
-                  ],
+                HistoryBookingsTabView(
+                  bookings: _historyBookings,
                 ),
               ],
             ),

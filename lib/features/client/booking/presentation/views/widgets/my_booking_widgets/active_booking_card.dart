@@ -1,35 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salahly/core/theme/app_theme.dart';
+import 'package:salahly/features/client/booking/data/models/booking_model.dart';
 import 'status_badge.dart';
 import 'technician_info_card.dart';
 
 class ActiveBookingCard extends StatelessWidget {
-  final String categoryTitle;
-  final String jobId;
-  final BookingStatus status;
-  final String? technicianName;
-  final String? technicianImage;
-  final String price;
-  final String estCompletionTime;
+  final BookingModel booking;
   final VoidCallback? onTrackTap;
   final VoidCallback? onCallTap;
-
+  final bool isEmpty = true;
   const ActiveBookingCard({
     super.key,
-    required this.categoryTitle,
-    required this.jobId,
-    required this.status,
-    this.technicianName,
-    this.technicianImage,
-    required this.price,
-    required this.estCompletionTime,
+    required this.booking,
     this.onTrackTap,
     this.onCallTap,
   });
 
   @override
   Widget build(BuildContext context) {
+  
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
@@ -48,7 +38,6 @@ class ActiveBookingCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          
           Row(
             children: [
               Container(
@@ -57,7 +46,7 @@ class ActiveBookingCard extends StatelessWidget {
                   color: const Color(0xFFF1F5F9),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(Icons.ac_unit, color: AppTheme.primaryNavy),
+                child: const Icon(Icons.handyman_rounded, color: AppTheme.primaryNavy),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -65,7 +54,7 @@ class ActiveBookingCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      categoryTitle,
+                      booking.categoryTitle,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -73,7 +62,7 @@ class ActiveBookingCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${'job_id'.tr()}: #$jobId',
+                      '${'job_id'.tr()}: #${booking.id}',
                       style: const TextStyle(
                         fontSize: 12,
                         color: AppTheme.slate500,
@@ -82,23 +71,18 @@ class ActiveBookingCard extends StatelessWidget {
                   ],
                 ),
               ),
-              StatusBadge(status: status),
+              StatusBadge(status: booking.status),
             ],
           ),
-
-         
-          if (technicianName != null) ...[
+          if (booking.technicianName != null) ...[
             const SizedBox(height: 16),
             TechnicianInfoCard(
-              name: technicianName!,
-              imageUrl: technicianImage,
+              name: booking.technicianName!,
+              imageUrl: booking.technicianImage,
               onCallTap: onCallTap,
             ),
           ],
-
           const SizedBox(height: 16),
-
-          
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -115,7 +99,7 @@ class ActiveBookingCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    price,
+                    booking.price,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -135,7 +119,7 @@ class ActiveBookingCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    estCompletionTime,
+                    booking.estCompletionTime,
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -146,9 +130,7 @@ class ActiveBookingCard extends StatelessWidget {
               ),
             ],
           ),
-
-          
-          if (status == BookingStatus.inProgress && onTrackTap != null) ...[
+          if (booking.status == BookingStatus.inProgress && onTrackTap != null) ...[
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,

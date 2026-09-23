@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salahly/core/utils/functions/file_picker_helper.dart';
 import 'package:salahly/features/auth/presentation/views/widgets/custom_dropdown_for_field.dart';
+
 import '../../../../../core/theme/app_theme.dart';
 import 'custom_text_form_field.dart';
 import 'upload_id_box.dart';
@@ -58,11 +59,20 @@ class _ProfessionalRegisterFormState extends State<ProfessionalRegisterForm> {
 
           CustomTextFormField(
             label: 'phone_label'.tr(),
-            hintText: '+20 1XX XXX XXXX',
+            hintText: '01xxxxxxxxx',
             prefixIcon: Icons.phone_outlined,
             keyboardType: TextInputType.phone,
-            validator: (val) =>
-                val == null || val.isEmpty ? 'val_required'.tr() : null,
+
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'val_phone_required'.tr();
+              }
+              
+              if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(value.trim())) {
+                return 'val_phone_invalid'.tr();
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 16),
 
@@ -136,7 +146,6 @@ class _ProfessionalRegisterFormState extends State<ProfessionalRegisterForm> {
           const SizedBox(height: 20),
 
           ElevatedButton(
-            
             onPressed: widget.agreedToTerms ? _submitForm : null,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppTheme.accentAmber,

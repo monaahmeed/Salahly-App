@@ -6,8 +6,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:salahly/core/utils/functions/location_helper.dart';
 import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/booking_view_body.dart';
 import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/pick_location_view.dart';
-
-
 import 'package:salahly/features/client/home/data/models/technician_model.dart';
 
 class BookingView extends StatefulWidget {
@@ -21,31 +19,43 @@ class BookingView extends StatefulWidget {
 }
 
 class _BookingViewState extends State<BookingView> {
- 
-  LatLng _selectedLatLng = const LatLng(30.0444, 31.2357);
- final String _addressTitle = 'current_location_title'.tr();
-  String _addressDetails = 'loading_address'.tr();
   
+  late final TextEditingController _titleController;
+  late final TextEditingController _descriptionController;
+  late final TextEditingController _priceController;
+
+  LatLng _selectedLatLng = const LatLng(30.0444, 31.2357);
+  final String _addressTitle = 'current_location_title'.tr();
+  String _addressDetails = 'loading_address'.tr();
 
   @override
   void initState() {
     super.initState();
+    _titleController = TextEditingController();
+    _descriptionController = TextEditingController();
+    _priceController = TextEditingController();
     _initCurrentLocation();
   }
 
-  Future<void> _initCurrentLocation() async {
+  @override
+  void dispose() {
     
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _priceController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _initCurrentLocation() async {
     final position = await LocationHelper.getCurrentLocation();
 
     if (position != null && mounted) {
       final currentLatLng = LatLng(position.latitude, position.longitude);
 
-      
       setState(() {
         _selectedLatLng = currentLatLng;
       });
 
-      
       _fetchAddressNonBlocking(position.latitude, position.longitude);
     } else if (mounted) {
       setState(() {
@@ -54,7 +64,6 @@ class _BookingViewState extends State<BookingView> {
     }
   }
 
-  
   Future<void> _fetchAddressNonBlocking(double lat, double lng) async {
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng)
@@ -100,22 +109,27 @@ class _BookingViewState extends State<BookingView> {
 
   @override
   Widget build(BuildContext context) {
-    
-        
     return Scaffold(
-      appBar: AppBar(title: Text( 
-        widget.categoryName != null 
-        ? '${'request'.tr()}  ${widget.categoryName}'
-        : '${'booking_title'.tr()} ${' Details'}',
-        )
+      appBar: AppBar(
+        title: Text(
+          widget.categoryName != null
+              ? '${'request'.tr()} ${widget.categoryName}'
+              : '${'booking_title'.tr()} Details',
+        ),
       ),
       body: BookingViewBody(
         categoryName: widget.categoryName,
-       technician: widget.technician,
+        technician: widget.technician,
         selectedLatLng: _selectedLatLng,
         addressTitle: _addressTitle,
         addressDetails: _addressDetails,
         onPickLocationTap: _handlePickLocation,
+        titleController: _titleController,
+        descriptionController: _descriptionController,
+        priceController: _priceController,
+        onSubmit: () {
+          
+        },
       ),
     );
   }

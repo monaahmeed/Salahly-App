@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../../core/theme/app_theme.dart';
 import 'custom_text_form_field.dart';
 
@@ -28,15 +29,26 @@ class CustomerRegisterForm extends StatelessWidget {
             label: 'fullname_label'.tr(),
             hintText: 'Jane Doe',
             prefixIcon: Icons.person_outline_rounded,
-            validator: (val) => val == null || val.isEmpty ? 'val_required'.tr() : null,
+            validator: (val) =>
+                val == null || val.isEmpty ? 'val_required'.tr() : null,
           ),
           const SizedBox(height: 16),
+
           CustomTextFormField(
-            label: 'phone_label'.tr(),
-            hintText: '+20 1XX XXX XXXX',
+            label: 'phone_label'.tr(), 
+            hintText: '01xxxxxxxxx',
             prefixIcon: Icons.phone_outlined,
             keyboardType: TextInputType.phone,
-            validator: (val) => val == null || val.isEmpty ? 'val_required'.tr() : null,
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'val_phone_required'.tr();
+              }
+
+              if (!RegExp(r'^01[0125][0-9]{8}$').hasMatch(value.trim())) {
+                return 'val_phone_invalid'.tr();
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 16),
           CustomTextFormField(
@@ -44,7 +56,8 @@ class CustomerRegisterForm extends StatelessWidget {
             hintText: 'you@example.com',
             prefixIcon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
-            validator: (val) => val == null || val.isEmpty ? 'val_required'.tr() : null,
+            validator: (val) =>
+                val == null || val.isEmpty ? 'val_required'.tr() : null,
           ),
           const SizedBox(height: 16),
           CustomTextFormField(
@@ -52,7 +65,9 @@ class CustomerRegisterForm extends StatelessWidget {
             hintText: '••••••••',
             prefixIcon: Icons.lock_outline_rounded,
             isPassword: true,
-            validator: (val) => val == null || val.length < 6 ? 'val_password_short'.tr() : null,
+            validator: (val) => val == null || val.length < 6
+                ? 'val_password_short'.tr()
+                : null,
           ),
           const SizedBox(height: 16),
           Row(
@@ -77,11 +92,17 @@ class CustomerRegisterForm extends StatelessWidget {
               backgroundColor: AppTheme.accentAmber,
               disabledBackgroundColor: Colors.amber.shade200,
               padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             child: Text(
               'create_account_btn'.tr(),
-              style: const TextStyle(color: AppTheme.primaryNavy, fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: AppTheme.primaryNavy,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
