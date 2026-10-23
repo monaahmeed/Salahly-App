@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:salahly/features/client/booking/domain/enums/booking_status.dart';
 
-enum BookingStatus { inProgress, pending, scheduled, completed, cancelled }
+
 
 class StatusBadge extends StatelessWidget {
   final BookingStatus status;

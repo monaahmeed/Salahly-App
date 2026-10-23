@@ -39,7 +39,7 @@ abstract class AppRouter {
   static const kTechnicianReviews = '/TechnicianReviews';
 
   static final router = GoRouter(
-    initialLocation:   kHomeView ,
+    initialLocation: kHomeView  ,
     routes: [
       GoRoute(
         path: kSplashView,

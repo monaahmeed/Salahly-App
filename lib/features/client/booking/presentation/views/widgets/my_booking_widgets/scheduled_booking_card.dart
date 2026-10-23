@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salahly/core/theme/app_theme.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/empty_state_widget.dart';
+import 'package:salahly/features/client/booking/domain/enums/booking_status.dart';
 import 'status_badge.dart';
+import 'technician_info_card.dart'; 
 
 class ScheduledBookingCard extends StatelessWidget {
   final String categoryTitle;
@@ -10,7 +11,9 @@ class ScheduledBookingCard extends StatelessWidget {
   final BookingStatus status;
   final String dateText;
   final String price;
-  final bool isEmpty = true;
+  final String? technicianName;
+  final String? technicianImage;
+  final VoidCallback? onCallTap;
 
   const ScheduledBookingCard({
     super.key,
@@ -19,16 +22,13 @@ class ScheduledBookingCard extends StatelessWidget {
     required this.status,
     required this.dateText,
     required this.price,
+    this.technicianName,
+    this.technicianImage,
+    this.onCallTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (isEmpty) {
-      return EmptyStateWidget(
-        title: 'no_scheduled_bookings'.tr(),
-        subtitle: 'no_scheduled_bookings_desc'.tr(),
-      );
-    }
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
@@ -48,7 +48,7 @@ class ScheduledBookingCard extends StatelessWidget {
                   color: const Color(0xFFF1F5F9),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(Icons.plumbing, color: AppTheme.primaryNavy),
+                child: const Icon(Icons.calendar_month_rounded, color: AppTheme.primaryNavy),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -76,6 +76,16 @@ class ScheduledBookingCard extends StatelessWidget {
               StatusBadge(status: status),
             ],
           ),
+        
+          if (technicianName != null && status == BookingStatus.scheduled) ...[
+            const SizedBox(height: 16),
+            TechnicianInfoCard(
+              name: technicianName!,
+              imageUrl: technicianImage,
+              onCallTap: onCallTap,
+            ),
+          ],
+
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

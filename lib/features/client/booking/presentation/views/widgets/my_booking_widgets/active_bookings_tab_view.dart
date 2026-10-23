@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:salahly/features/client/booking/data/models/booking_model.dart';
+import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
 import 'active_booking_card.dart';
 import 'empty_state_widget.dart';
 
 class ActiveBookingsTabView extends StatelessWidget {
-  final List<BookingModel> bookings;
-  final Function(BookingModel) onTrackTap;
-  final Function(BookingModel) onCallTap;
+  final List<BookingEntity> bookings;
+  final Function(BookingEntity) onTrackTap;
+  final Function(BookingEntity) onCallTap;
 
   const ActiveBookingsTabView({
     super.key,

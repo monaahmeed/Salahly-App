@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:salahly/features/client/booking/data/models/booking_model.dart';
+import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/booking/presentation/manger/booking_cubit/bookings_cubit.dart';
+import 'package:salahly/features/client/booking/presentation/manger/booking_cubit/bookings_state.dart';
 import 'package:salahly/features/client/booking/presentation/views/live_technician_tracking_view.dart';
 import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/active_bookings_tab_view.dart';
 import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/bookings_tab_bar.dart';
@@ -18,15 +21,23 @@ class _MyBookingsViewBodyState extends State<MyBookingsViewBody>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  
-  final List<BookingModel> _activeBookings = [];
-  final List<BookingModel> _scheduledBookings = [];
-  final List<BookingModel> _historyBookings = [];
-
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        final cubit = context.read<BookingsCubit>();
+        if (_tabController.index == 0) {
+          cubit.fetchActiveBookings();
+        } else if (_tabController.index == 1) {
+          cubit.fetchScheduledBookings();
+        } else if (_tabController.index == 2) {
+          cubit.fetchHistoryBookings();
+        }
+      }
+    });
   }
 
   @override
@@ -35,7 +46,7 @@ class _MyBookingsViewBodyState extends State<MyBookingsViewBody>
     super.dispose();
   }
 
-  void _navigateToTracking(BookingModel booking) {
+  void _navigateToTracking(BookingEntity booking) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -64,16 +75,54 @@ class _MyBookingsViewBodyState extends State<MyBookingsViewBody>
             child: TabBarView(
               controller: _tabController,
               children: [
-                ActiveBookingsTabView(
-                  bookings: _activeBookings,
-                  onTrackTap: _navigateToTracking,
-                  onCallTap: (booking) {},
+                
+                BlocBuilder<BookingsCubit, BookingsState>(
+                  builder: (context, state) {
+                    if (state is FetchActiveBookingsLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is FetchActiveBookingsFailure) {
+                      return Center(child: Text(state.errMessage));
+                    } else if (state is FetchActiveBookingsSuccess) {
+                      return ActiveBookingsTabView(
+                        bookings: state.bookings,
+                        onTrackTap: _navigateToTracking,
+                        onCallTap: (booking) {},
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
                 ),
-                ScheduledBookingsTabView(
-                  bookings: _scheduledBookings,
+                
+                
+                BlocBuilder<BookingsCubit, BookingsState>(
+                  builder: (context, state) {
+                    if (state is FetchScheduledBookingsLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is FetchScheduledBookingsFailure) {
+                      return Center(child: Text(state.errMessage));
+                    } else if (state is FetchScheduledBookingsSuccess) {
+                      return ScheduledBookingsTabView(
+                        bookings: state.bookings,
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
                 ),
-                HistoryBookingsTabView(
-                  bookings: _historyBookings,
+                
+                
+                BlocBuilder<BookingsCubit, BookingsState>(
+                  builder: (context, state) {
+                    if (state is FetchHistoryBookingsLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is FetchHistoryBookingsFailure) {
+                      return Center(child: Text(state.errMessage));
+                    } else if (state is FetchHistoryBookingsSuccess) {
+                      return HistoryBookingsTabView(
+                        bookings: state.bookings,
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
                 ),
               ],
             ),

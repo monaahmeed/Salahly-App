@@ -1,15 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salahly/core/theme/app_theme.dart';
-import 'package:salahly/features/client/booking/data/models/booking_model.dart';
-import 'status_badge.dart';
+import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/booking/domain/enums/booking_status.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/status_badge.dart';
+
+
 import 'technician_info_card.dart';
 
 class ActiveBookingCard extends StatelessWidget {
-  final BookingModel booking;
+  final BookingEntity booking;
   final VoidCallback? onTrackTap;
   final VoidCallback? onCallTap;
-  final bool isEmpty = true;
+  final bool isEmpty = false;
   const ActiveBookingCard({
     super.key,
     required this.booking,
@@ -19,7 +22,6 @@ class ActiveBookingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
@@ -46,7 +48,10 @@ class ActiveBookingCard extends StatelessWidget {
                   color: const Color(0xFFF1F5F9),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(Icons.handyman_rounded, color: AppTheme.primaryNavy),
+                child: const Icon(
+                  Icons.handyman_rounded,
+                  color: AppTheme.primaryNavy,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -130,7 +135,8 @@ class ActiveBookingCard extends StatelessWidget {
               ),
             ],
           ),
-          if (booking.status == BookingStatus.inProgress && onTrackTap != null) ...[
+          if (booking.status == BookingStatus.inProgress &&
+              onTrackTap != null) ...[
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,

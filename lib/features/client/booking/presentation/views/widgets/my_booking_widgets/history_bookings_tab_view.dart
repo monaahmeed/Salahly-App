@@ -1,16 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:salahly/features/client/booking/data/models/booking_model.dart';
+import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/history_booking_card.dart';
 import 'empty_state_widget.dart';
-import 'scheduled_booking_card.dart';
 
 class HistoryBookingsTabView extends StatelessWidget {
-  final List<BookingModel> bookings;
+  final List<BookingEntity> bookings;
 
-  const HistoryBookingsTabView({
-    super.key,
-    required this.bookings,
-  });
+  const HistoryBookingsTabView({super.key, required this.bookings});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +23,7 @@ class HistoryBookingsTabView extends StatelessWidget {
       itemCount: bookings.length,
       itemBuilder: (context, index) {
         final booking = bookings[index];
-        return ScheduledBookingCard(
-          categoryTitle: booking.categoryTitle,
-          jobId: 'SL-${booking.id}',
-          status: booking.status,
-          dateText: booking.estCompletionTime,
-          price: booking.price,
-        );
+        return HistoryBookingCard(booking: booking);
       },
     );
   }
