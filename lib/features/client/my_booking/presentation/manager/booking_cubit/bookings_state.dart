@@ -1,4 +1,4 @@
-import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/my_booking/domain/entities/booking_entity.dart';
 
 abstract class BookingsState {}
 

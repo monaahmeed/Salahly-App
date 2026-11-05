@@ -1,14 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/booking_submit_button.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/offered_price_input.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/problem_description_input.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/problem_title_input.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/schedule_picker.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/service_location_card.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/technician_header_card.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/upload_photos_section.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/booking_submit_button.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/offered_price_input.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/problem_description_input.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/problem_title_input.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/schedule_picker.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/service_location_card.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/technician_header_card.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/upload_photos_section.dart';
 import 'package:salahly/features/client/home/data/models/technician_model.dart';
 
 class BookingViewBody extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:salahly/core/utils/functions/show_language_bottom_sheet.dart';
 import 'package:salahly/core/utils/widgets/logout_button.dart';
 import 'package:salahly/core/utils/widgets/profile_header.dart';
 import 'package:salahly/core/utils/widgets/profile_option_tile.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/pick_location_view.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/pick_location_view.dart';
 import 'package:salahly/features/technician/profile/presentation/views/widgets/category_picker_sheet.dart';
 import 'package:salahly/features/technician/profile/presentation/views/widgets/work_radius_dialog.dart';
 import 'package:salahly/features/technician/profile/presentation/views/widgets/working_hours_picker.dart';

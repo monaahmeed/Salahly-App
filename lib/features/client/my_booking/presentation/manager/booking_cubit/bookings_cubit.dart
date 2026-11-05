@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:salahly/features/client/booking/domain/repos/bookings_repo.dart';
+import 'package:salahly/features/client/my_booking/domain/repos/bookings_repo.dart';
 import 'bookings_state.dart';
 
 class BookingsCubit extends Cubit<BookingsState> {

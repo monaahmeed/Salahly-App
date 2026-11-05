@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:salahly/features/client/booking/data/datasources/bookings_remot_data_source.dart';
+import 'package:salahly/features/client/my_booking/data/datasources/bookings_remot_data_source.dart';
 import '../../../../../core/errors/failures.dart';
 import '../../domain/entities/booking_entity.dart';
 import '../../domain/repos/bookings_repo.dart';

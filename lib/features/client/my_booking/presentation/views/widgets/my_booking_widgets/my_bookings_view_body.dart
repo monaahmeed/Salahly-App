@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
-import 'package:salahly/features/client/booking/presentation/manger/booking_cubit/bookings_cubit.dart';
-import 'package:salahly/features/client/booking/presentation/manger/booking_cubit/bookings_state.dart';
-import 'package:salahly/features/client/booking/presentation/views/live_technician_tracking_view.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/active_bookings_tab_view.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/bookings_tab_bar.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/history_bookings_tab_view.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/scheduled_bookings_tab_view.dart';
+import 'package:salahly/features/client/my_booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/my_booking/presentation/manager/booking_cubit/bookings_cubit.dart';
+import 'package:salahly/features/client/my_booking/presentation/manager/booking_cubit/bookings_state.dart';
+import 'package:salahly/features/client/my_booking/presentation/views/live_technician_tracking_view.dart';
+import 'package:salahly/features/client/my_booking/presentation/views/widgets/my_booking_widgets/active_bookings_tab_view.dart';
+import 'package:salahly/features/client/my_booking/presentation/views/widgets/my_booking_widgets/bookings_tab_bar.dart';
+import 'package:salahly/features/client/my_booking/presentation/views/widgets/my_booking_widgets/history_bookings_tab_view.dart';
+import 'package:salahly/features/client/my_booking/presentation/views/widgets/my_booking_widgets/scheduled_bookings_tab_view.dart';
 
 class MyBookingsViewBody extends StatefulWidget {
   const MyBookingsViewBody({super.key});

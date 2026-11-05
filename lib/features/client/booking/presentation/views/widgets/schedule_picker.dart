@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salahly/core/theme/app_theme.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/date_picker_button.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/option_button.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/date_picker_button.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/option_button.dart';
 
 
 class SchedulePicker extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salahly/core/theme/app_theme.dart';
-import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/my_booking/domain/entities/booking_entity.dart';
 import 'status_badge.dart';
 import 'technician_info_card.dart';
 

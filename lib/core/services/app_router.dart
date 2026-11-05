@@ -6,7 +6,8 @@ import 'package:salahly/features/auth/presentation/views/forgot_password_view.da
 import 'package:salahly/features/auth/presentation/views/login_view.dart';
 import 'package:salahly/features/auth/presentation/views/register_view.dart';
 import 'package:salahly/features/client/booking/presentation/views/booking_view.dart';
-import 'package:salahly/features/client/booking/presentation/views/my_booking_view.dart';
+import 'package:salahly/features/client/chat/presentaion/views/chat_view.dart';
+import 'package:salahly/features/client/my_booking/presentation/views/my_booking_view.dart';
 import 'package:salahly/features/client/home/data/models/technician_model.dart';
 import 'package:salahly/features/client/home/presentation/views/home_view.dart';
 import 'package:salahly/features/client/profile/presentation/views/profile_view.dart';
@@ -30,6 +31,8 @@ abstract class AppRouter {
   static const kBookingsView = '/bookingsView';
   static const kMyBookingsView = '/myBookingsView';
   static const kProfileView = '/profileView';
+  static const kChatView = '/chatView';
+
 
   static const kTechnicianDashboard = '/technicianDashboard';
   static const kTechnicianJobs = '/technicianJobs';
@@ -103,6 +106,16 @@ abstract class AppRouter {
               ),
             ],
           ),
+
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: kChatView,
+                builder: (context, state) => const ChatView(),
+              ),
+            ],
+          ),
+
           StatefulShellBranch(
             routes: [
               GoRoute(

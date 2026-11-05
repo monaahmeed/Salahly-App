@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
-import 'package:salahly/features/client/booking/domain/enums/booking_status.dart';
+import 'package:salahly/features/client/my_booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/my_booking/domain/enums/booking_status.dart';
 
 class BookingModel extends BookingEntity {
   const BookingModel({

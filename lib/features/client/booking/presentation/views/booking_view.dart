@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:salahly/core/utils/functions/location_helper.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/booking_view_body.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/booking_widgets/pick_location_view.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/booking_view_body.dart';
+import 'package:salahly/features/client/booking/presentation/views/widgets/pick_location_view.dart';
 import 'package:salahly/features/client/home/data/models/technician_model.dart';
 
 class BookingView extends StatefulWidget {

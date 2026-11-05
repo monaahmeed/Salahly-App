@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:salahly/core/theme/app_theme.dart';
-import 'package:salahly/features/client/booking/data/models/invoice_model.dart';
+import 'package:salahly/features/client/my_booking/data/models/invoice_model.dart';
 
 class InvoicePaymentSheet extends StatelessWidget {
   final InvoiceModel invoice;

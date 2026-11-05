@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:salahly/features/client/booking/domain/entities/booking_entity.dart';
-import 'package:salahly/features/client/booking/presentation/views/widgets/my_booking_widgets/history_booking_card.dart';
+import 'package:salahly/features/client/my_booking/domain/entities/booking_entity.dart';
+import 'package:salahly/features/client/my_booking/presentation/views/widgets/my_booking_widgets/history_booking_card.dart';
 import 'empty_state_widget.dart';
 
 class HistoryBookingsTabView extends StatelessWidget {
